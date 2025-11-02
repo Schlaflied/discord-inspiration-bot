@@ -10,13 +10,15 @@ This is a Discord bot that listens to messages in a specific Discord channel and
 
 ## Current State
 - Project setup completed for Replit environment
-- All dependencies installed (discord.js, express, node-fetch)
+- All dependencies installed (discord.js, node-fetch)
 - Bot code is complete and ready to run
-- Requires environment variables to be configured
+- All required environment variables configured
 
 ## Recent Changes
-- 2025-11-02: Completed incomplete bot_client.js file with full Discord bot logic
-- 2025-11-02: Created index.js entry point
+- 2025-11-02: Updated to user-provided index.js implementation
+- 2025-11-02: Removed bot_client.js (consolidated into index.js)
+- 2025-11-02: Removed express dependency (using built-in http module)
+- 2025-11-02: Fixed 'ready' event deprecation (now using 'clientReady')
 - 2025-11-02: Added .gitignore for Node.js project
 - 2025-11-02: Set up project documentation
 
@@ -33,33 +35,31 @@ The following secrets must be configured in Replit Secrets:
 ### Structure
 ```
 .
-├── index.js          # Entry point (imports bot_client.js)
-├── bot_client.js     # Main bot logic with Discord and Dify integration
+├── index.js          # Main entry point with bot logic and keep-alive server
 ├── package.json      # Dependencies and scripts
 └── replit.md         # This documentation file
 ```
 
 ### Key Components
 1. **Discord Client**: Uses discord.js v14 with necessary intents for message monitoring
-2. **Dify Integration**: Sends messages to Dify Agent API and receives AI responses
-3. **Express Server**: Runs on port 3000 for keep-alive functionality
-4. **Environment Validation**: Checks for required secrets before starting
+2. **Dify Integration**: Sends messages to Dify Agent API (does not reply in Discord)
+3. **HTTP Server**: Uses built-in Node.js http module for keep-alive on port 3000
+4. **Environment Validation**: Uses environment variables for configuration
 
 ### How It Works
 1. Bot starts and logs into Discord using the provided token
-2. Express server starts on port 3000 (localhost) for monitoring/health checks
+2. HTTP server starts on port 3000 (localhost) for keep-alive functionality
 3. Bot listens for messages in the specified Discord channel
 4. When a message is received (not from a bot), it's sent to Dify Agent API
-5. The AI response is posted back to the Discord channel as a reply
+5. Bot logs the result but does not reply in Discord (Dify handles the action)
 
 ## API Endpoints
-- `GET /` - Status page showing bot is running
-- `GET /health` - Health check endpoint with bot status
+- `GET /` - Keep-alive endpoint (returns "Bot is running and staying awake")
 
 ## Dependencies
 - **discord.js** (^14.15.3) - Discord API wrapper
 - **node-fetch** (^3.3.2) - HTTP requests to Dify API
-- **express** - Web server for keep-alive
+- **http** (built-in) - Keep-alive web server
 
 ## Notes
 - Bot runs on localhost:3000 for the keep-alive server (backend only)
