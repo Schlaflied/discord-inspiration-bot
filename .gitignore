@@ -22,3 +22,6 @@ Thumbs.db
 .upm/
 .cache/
 .config/
+.replit
+replit.md
+.local/
