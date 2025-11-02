@@ -46,7 +46,7 @@ async function startBot() {
         });
 
         // Bot 准备就绪时触发
-        client.once('ready', () => {
+        client.once('clientReady', () => {
             console.log(`✅ Bot 已登录为 ${client.user.tag}`);
             console.log(`🎯 正在监听频道 ID: ${TARGET_CHANNEL_ID}`);
         });
