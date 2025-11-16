@@ -1,4 +1,4 @@
-# ⛵ Discord Inspiration Bot / Discord 灵感机器人
+# 🤖 Discord Inspiration Bot / Discord 灵感机器人
 
 这是一个基于 Node.js 和 Discord.js 开发的机器人，旨在为用户提供即时的鼓舞人心的名言和积极反馈，帮助提高社区的士气。
 
